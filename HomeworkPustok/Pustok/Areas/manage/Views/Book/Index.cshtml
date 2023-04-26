@@ -1,0 +1,65 @@
+﻿@using Pustok.ViewModels
+@model PaginatedList<Book>
+@{
+    ViewData["Title"] = "Index";
+    int count = (Model.PageIndex - 1) * Model.PageSize;
+}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Books</h1>
+        <a asp-action="create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"> Create Book</a>
+    </div>
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Genre</th>
+                        <th scope="col">SalePrice</th>
+                        <th scope="col">CostPrice</th>
+                        <th scope="col">Discount</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        count++;
+                        <tr>
+                            <th scope="row">@count</th>
+                            <td>@item.Name</td>
+                            <td>@item.Genre.Name</td>
+                            <td>@item.SalePrice.ToString("0.00")</td>
+                            <td>@item.CostPrice.ToString("0.00")</td>
+                            <td>@item.DiscountPercent.ToString("0.##")%</td>
+                            <td>
+                                <img width="50" src="~/uploads/books/@item.BookImages.FirstOrDefault(x=>x.PosterStatus==true)?.Image">
+                            </td>
+                            <td>
+                                <a asp-action="edit" asp-route-id="@item.Id" class="btn btn-info">Edit</a>
+                                <a asp-action="delete" asp-route-id="@item.Id" class="btn btn-danger delete-btn">Delete</a>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item @(Model.HasPrev?"":"disabled")"><a class="page-link" asp-action="index" asp-route-page="@(Model.PageIndex-1)">Previous</a></li>
+                    @for (int i = 1; i <= Model.PageCount; i++)
+                    {
+                        <li class="page-item @(Model.PageIndex==i?"active":"")"><a class="page-link" asp-action="index" asp-route-page="@i">@i</a></li>
+                    }
+                    <li class="page-item @(Model.HasNext?"":"disabled")"><a class="page-link" asp-action="index" asp-route-page="@(Model.PageIndex+1)">Next</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

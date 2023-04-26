@@ -1,0 +1,13 @@
+﻿
+.remove-img-box {
+    cursor: pointer;
+    width: 18px;
+    text-align: center;
+    font-size: 14px;
+    position: absolute;
+    border: 1px solid black;
+    border-radius: 50%;
+    color: red;
+    right: 3px;
+    top: -10px;
+}

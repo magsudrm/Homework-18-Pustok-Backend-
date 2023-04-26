@@ -1,0 +1,56 @@
+﻿@model List<Tag>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/manage/Views/Shared/_Layout.cshtml";
+    int count = 0;
+}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Tags</h1>
+        <a asp-action="create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"> Create Author</a>
+    </div>
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-8">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        count++;
+                        <tr>
+                            <th scope="row">@count</th>
+                            <td>@item.Name</td>
+                            <td>
+                                <a asp-action="edit" asp-route-id="@item.Id" class="btn btn-info">Edit</a>
+                                <a asp-action="delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                            </td>
+
+                        </tr>
+                    }
+
+
+                </tbody>
+
+            </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+

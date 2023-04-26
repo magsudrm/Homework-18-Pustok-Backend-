@@ -1,0 +1,37 @@
+﻿@model Author
+@{
+    ViewData["Title"] = "Delete";
+}
+<div class="container-fluid">
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Authors Create</h1>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Author</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">FullName: @Model.FullName</li>
+                    <li class="list-group-item">BirthYear: @Model.BirthYear</li>
+                </ul>
+                <div class="card-body">
+                    <form asp-action="delete" method="post">
+                        <button type="submit" class="card-link">Delete</button>
+                        <a asp-action="index" class="card-link">Go Back</a>
+                    </form>
+                      @*   <a asp-action="delete" asp-route-id="@Model.Id" class="card-link">Delete</a>
+                        <a asp-action="index" class="card-link">Go Back</a>*@
+                   
+                </div>
+            </div>
+        </div>
+     </div>
+ </div>
+
+@section Scripts{
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/4.0.0/jquery.validate.unobtrusive.min.js" integrity="sha512-xq+Vm8jC94ynOikewaQXMEkJIOBp7iArs3IhFWSWdRT3Pq8wFz46p+ZDFAR7kHnSFf+zUv52B3prRYnbDRdgog==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+}
